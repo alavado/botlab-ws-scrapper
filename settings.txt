@@ -1,5 +1,5 @@
 [config]
 BROWSER=chrome
 BROWSER_PATH=C:\Users\aleja\AppData\Local\Google\Chrome\User Data\Default
-NAME=Catalina Ei
+NAME=Mamá
 PAGE=https://web.whatsapp.com/

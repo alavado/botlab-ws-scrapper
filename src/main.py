@@ -1,8 +1,7 @@
 import configparser
 import time
 
-from whatsapp_scrapper import WhatsappScrapper
-
+from botlab_scrapper import BotlabScrapper
 
 def load_settings():
     """
@@ -32,21 +31,21 @@ def main():
     (Browser profile where whatsapp web is already scanned)
     """
     settings = load_settings()
-    scrapper = WhatsappScrapper(
+    scrapper = BotlabScrapper(
         settings['page'], settings['browser'], settings['browser_path'])
 
     if scrapper.open_conversation(settings['name']):
-        scrapper.send_message("hola")
-        previous_in_message = None
-        while True:
-            last_in_message, emojis = scrapper.read_last_in_message()
+        scrapper.get_messages()
+        # scrapper.send_message("hola")
+        # previous_in_message = None
+        # while True:
+        #     last_in_message, emojis = scrapper.read_last_in_message()
 
-            if previous_in_message != last_in_message:
-                print(last_in_message, emojis)
-                previous_in_message = last_in_message
-                scrapper.send_message(last_in_message + " jeje que eres chistosa")
+        #     if previous_in_message != last_in_message:
+        #         print(last_in_message, emojis)
+        #         previous_in_message = last_in_message
 
-            time.sleep(1)
+        #     time.sleep(1)
 
 
 if __name__ == '__main__':

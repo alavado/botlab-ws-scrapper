@@ -11,7 +11,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
 
 
-class WhatsappScrapper():
+class BotlabScrapper():
     def __init__(self, page, browser, browser_path):
         self.page = page
         self.browser = browser
@@ -22,10 +22,6 @@ class WhatsappScrapper():
         self.driver.get(self.page)
 
     def load_driver(self):
-        """
-        Load the Selenium driver depending on the browser
-        (Edge and Safari are not running yet)
-        """
         driver = None
         if self.browser == 'firefox':
             firefox_profile = webdriver.FirefoxProfile(
@@ -45,10 +41,6 @@ class WhatsappScrapper():
         return driver
 
     def open_conversation(self, name):
-        """
-        Function that search the specified user by the 'name' and opens the conversation.
-        """
-
         while True:
             for chatter in self.driver.find_elements_by_xpath("//div[@id='pane-side']/div/div/div/div"):
                 chatter_path = ".//span[@title='{}']".format(
@@ -75,7 +67,7 @@ class WhatsappScrapper():
                         chatter.find_element_by_xpath(
                             ".//div/div").click()
                         return True
-                except Exception as e:
+                except Exception:
                     pass
 
     def read_last_in_message(self):
@@ -134,3 +126,14 @@ class WhatsappScrapper():
         send_button.click()
 
         return True
+    
+    def get_messages(self):
+        """
+        Esta es la función que estoy escribiendo.
+        """
+        for messages in self.driver.find_elements_by_xpath(
+                "//div[contains(@class,'message-in')]"):
+            message = messages.find_element_by_xpath(
+                    ".//div[@class='copyable-text']").text
+            print(message)
+        return 0
