@@ -56,13 +56,13 @@ class WhatsappScrapper():
 
                 # Wait until the chatter box is loaded in DOM
                 try:
-                    WebDriverWait(self.driver, 10).until(
+                    WebDriverWait(self.driver, 20).until(
                         EC.presence_of_element_located(
                             (By.XPATH, "//span[contains(@title,'{}')]".format(
                                 name)))
                     )
                 except StaleElementReferenceException:
-                    WebDriverWait(self.driver, 10).until(
+                    WebDriverWait(self.driver, 20).until(
                         EC.presence_of_element_located(
                             (By.XPATH, "//span[contains(@title,'{}')]".format(
                                 name)))

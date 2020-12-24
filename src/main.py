@@ -9,7 +9,7 @@ def load_settings():
     Loading and assigning global variables from our settings.txt file
     """
     config_parser = configparser.RawConfigParser()
-    config_file_path = 'mysettings.txt'
+    config_file_path = 'settings.txt'
     config_parser.read(config_file_path)
 
     browser = config_parser.get('config', 'BROWSER')
@@ -44,6 +44,7 @@ def main():
             if previous_in_message != last_in_message:
                 print(last_in_message, emojis)
                 previous_in_message = last_in_message
+                scrapper.send_message(last_in_message + " jeje que eres chistosa")
 
             time.sleep(1)
 
